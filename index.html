@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101010">
+<title>Crave District | Good Food. Big Mood.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{--bg:#101010;--panel:#191919;--text:#f7f4ee;--muted:#aaa49e;--red:#ff493d;--orange:#ffb15c;--line:#303030}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{background:var(--bg);color:var(--text);font-family:"DM Sans",sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button{font:inherit;cursor:pointer}
+img{display:block;width:100%;object-fit:cover}
+.container{width:min(1180px,calc(100% - 40px));margin:auto}
+.announcement{background:var(--red);padding:10px;text-align:center;font-size:10px;font-weight:700;letter-spacing:2px}
+header{position:sticky;top:0;z-index:100;background:#101010ed;backdrop-filter:blur(15px);border-bottom:1px solid var(--line)}
+.navbar{height:78px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font:700 23px "Space Grotesk",sans-serif;letter-spacing:-1px}
+.logo span{color:var(--red)}
+.logo small{display:block;font:700 9px "DM Sans",sans-serif;color:var(--muted);letter-spacing:3px;margin-top:5px}
+.nav-links{display:flex;align-items:center;gap:30px}
+.nav-links a{font-size:13px;color:#ddd;transition:.2s}
+.nav-links a:hover{color:var(--red)}
+.nav-links .nav-cta{background:var(--red);padding:13px 18px;border-radius:50px;color:white}
+.menu-toggle{display:none;background:#202020;color:white;border:1px solid var(--line);border-radius:10px;padding:8px 13px;font-size:23px}
+.hero{display:grid;grid-template-columns:1fr 1fr;gap:45px;align-items:center;padding:75px 0 85px}
+.eyebrow,.section-kicker{color:var(--orange);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:22px}
+h1,h2,h3{font-family:"Space Grotesk",sans-serif;letter-spacing:-2px}
+h1{font-size:clamp(55px,7vw,92px);line-height:.94}
+h1 em{font-style:normal;color:var(--red)}
+.hero-copy{color:var(--muted);line-height:1.9;max-width:450px;margin-top:25px;font-size:14px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.btn{display:inline-flex;justify-content:center;align-items:center;padding:15px 22px;border-radius:50px;font-size:13px;font-weight:700;border:1px solid transparent;transition:.25s}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{background:var(--red);color:white}
+.btn-primary:hover{background:#ff685d}
+.btn-outline{border-color:#444}
+.btn-outline:hover{background:#222}
+.hero-note{display:flex;align-items:center;gap:12px;margin-top:30px;font-size:12px;color:var(--muted)}
+.avatars{display:flex}.avatars span{width:29px;height:29px;display:grid;place-items:center;border-radius:50%;background:#333;margin-right:3px}
+.hero-visual{position:relative;padding:10px}
+.hero-image{height:460px;border-radius:48% 48% 20px 20px;animation:float 5s ease-in-out infinite;position:relative}
+.image-tag{position:absolute;bottom:28px;left:-5px;background:var(--orange);color:#17110b;padding:15px;border-radius:12px;transform:rotate(-5deg);font-weight:700;font-size:13px}
+.image-tag small{display:block;font-size:9px;letter-spacing:1px;margin-bottom:5px}
+.image-sticker{position:absolute;top:25px;right:-5px;background:var(--red);width:80px;height:80px;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:11px;font-weight:700;transform:rotate(10deg)}
+.ticker{overflow:hidden;background:#181818;border-block:1px solid var(--line);padding:20px 0}
+.ticker-track{display:flex;width:max-content;animation:marquee 25s linear infinite}
+.ticker-track span{font:700 15px "Space Grotesk",sans-serif;white-space:nowrap;padding:0 22px}
+.ticker-track b{color:var(--red);padding-left:20px}
+section.content-section{padding:95px 0}
+.section-heading{display:flex;align-items:end;justify-content:space-between;gap:25px;margin-bottom:35px}
+.section-kicker{color:var(--red);margin-bottom:14px;font-size:10px}
+h2{font-size:clamp(38px,5vw,58px);line-height:1.02}
+.section-desc{max-width:350px;color:var(--muted);font-size:13px;line-height:1.8}
+.menu-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.food-card{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden;transition:.3s}
+.food-card:hover{transform:translateY(-7px);border-color:var(--red)}
+.food-image-wrap{height:235px;position:relative;overflow:hidden}
+.food-image{height:100%;transition:transform .5s}
+.food-card:hover .food-image{transform:scale(1.06)}
+.food-label{position:absolute;top:14px;left:14px;background:var(--orange);color:#111;padding:8px 11px;border-radius:30px;font-size:9px;font-weight:700;text-transform:uppercase}
+.food-info{padding:22px}
+.food-title-row{display:flex;justify-content:space-between;gap:10px}
+.food-title-row h3{font-size:20px;letter-spacing:-.5px}
+.price{color:var(--orange);font-weight:700;white-space:nowrap}
+.food-info p{color:var(--muted);font-size:12px;line-height:1.8;margin-top:12px;min-height:44px}
+.food-bottom{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);padding-top:16px;margin-top:18px}
+.rating{font-size:11px;color:#ddd}.rating span{color:var(--orange)}
+.add-btn{width:40px;height:40px;border:0;border-radius:50%;background:var(--red);color:white;font-size:24px;transition:.2s}
+.add-btn:hover{background:white;color:#111;transform:rotate(90deg)}
+.story{display:grid;grid-template-columns:1fr 1fr;gap:55px;align-items:center;background:#171717;padding:30px;border:1px solid var(--line);border-radius:25px}
+.story-image{height:390px;border-radius:17px}
+.story-copy p{color:var(--muted);line-height:1.9;font-size:13px;margin-top:18px}
+.story-points{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:28px}
+.story-point{border-top:1px solid var(--line);padding-top:15px}
+.story-point strong{display:block;font:700 18px "Space Grotesk",sans-serif;margin-bottom:7px}
+.story-point span{font-size:11px;color:var(--muted)}
+.cta{background:var(--red);border-radius:25px;padding:70px 20px;text-align:center;position:relative;overflow:hidden}
+.cta .section-kicker{color:#ffe2ac}
+.cta h2{max-width:650px;margin:auto}
+.cta p{color:#ffe6e2;max-width:430px;line-height:1.8;font-size:13px;margin:20px auto 25px}
+.cta .btn{background:white;color:#111;position:relative}
+footer{padding:50px 0 25px;border-top:1px solid var(--line)}
+.footer-top{display:flex;justify-content:space-between;gap:30px;padding-bottom:35px}
+.footer-copy{max-width:300px;font-size:12px;color:var(--muted);line-height:1.8;margin-top:14px}
+.footer-links{display:flex;flex-wrap:wrap;gap:22px;font-size:12px}
+.footer-bottom{display:flex;justify-content:space-between;gap:15px;border-top:1px solid var(--line);padding-top:20px;color:#777;font-size:10px}
+.reveal{opacity:0;transform:translateY(25px);transition:opacity .7s,transform .7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.toast{position:fixed;z-index:200;bottom:25px;left:50%;transform:translate(-50%,20px);background:white;color:#111;padding:15px 22px;border-radius:50px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;transition:.25s;max-width:90%;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.order-modal{display:none;position:fixed;inset:0;z-index:999;background:#000c;align-items:center;justify-content:center;padding:20px}
+.order-modal.open{display:flex}
+.order-panel{width:100%;max-width:400px;background:#191919;border:1px solid #444;border-radius:20px;padding:28px;box-shadow:0 20px 70px #0009}
+.order-close{float:right;background:none;border:0;color:white;font-size:28px}
+.order-label{color:var(--red);font-size:10px;font-weight:700;letter-spacing:2px;margin-bottom:15px}
+.order-panel h2{font-size:30px;margin-bottom:12px}
+.order-panel p{color:var(--muted);font-size:13px;line-height:1.8;margin-bottom:20px}
+.order-confirm{background:var(--red);border:0;border-radius:30px;padding:13px 22px;color:white;font-weight:700}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(max-width:850px){.hero{gap:25px}.hero-image{height:370px}.menu-grid{grid-template-columns:repeat(2,1fr)}.food-card:last-child{grid-column:1/-1}.story{gap:25px;padding:22px}}
+@media(max-width:640px){
+.container{width:calc(100% - 32px)}.navbar{height:70px}.logo{font-size:20px}.menu-toggle{display:block}
+.nav-links{display:none;position:absolute;top:100%;left:0;right:0;background:#151515;padding:20px;flex-direction:column;align-items:stretch;gap:10px;border-bottom:1px solid var(--line)}
+.nav-links.mobile-open{display:flex}.nav-links a{padding:12px 5px}.nav-links .nav-cta{text-align:center}
+.hero{grid-template-columns:1fr;padding:55px 0;gap:30px}h1{font-size:clamp(53px,14vw,76px)}.hero-image{height:330px}
+.section-heading{align-items:start;flex-direction:column}.menu-grid{grid-template-columns:1fr}.food-card:last-child{grid-column:auto}.food-image-wrap{height:245px}
+section.content-section{padding:65px 0}.story{grid-template-columns:1fr;padding:16px}.story-image{height:260px}.cta{padding:55px 17px}.cta h2{font-size:38px}
+.footer-top{flex-direction:column}.footer-bottom{flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.reveal{opacity:1;transform:none}}
+</style>
+</head>
+
+<body>
+<div class="announcement">Freshly stacked · Boldly seasoned · Always satisfying</div>
+
+<header>
+<div class="container navbar">
+<a href="#home" class="logo">CRAVE<span>.</span>DISTRICT<small>GOOD FOOD. BIG MOOD.</small></a>
+<button class="menu-toggle" id="menu-toggle" aria-label="Open navigation menu" aria-expanded="false">☰</button>
+<nav class="nav-links" id="main-navigation" aria-label="Main navigation">
+<a href="#menu">Menu</a><a href="#story">Our vibe</a><a href="#contact" class="nav-cta">Find your craving ↗</a>
+</nav>
+</div>
+</header>
+
+<main>
+<section class="container hero" id="home">
+<div>
+<div class="eyebrow">Not your average bite.</div>
+<h1>BIG BITES.<br><em>NO</em> BORING.</h1>
+<p class="hero-copy">Stacked high. Packed with flavour. Made for the moments when a snack just won't cut it. Welcome to your new favourite food spot.</p>
+<div class="hero-actions">
+<a href="#menu" class="btn btn-primary" id="order-button">Order your favourites ↗</a>
+<a href="#story" class="btn btn-outline">Our story</a>
+</div>
+<div class="hero-note"><div class="avatars"><span>🍔</span><span>🍟</span><span>🍗</span></div>Big flavours. Serious cravings.</div>
+</div>
+<div class="hero-visual">
+<img class="hero-image" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=1100&q=85" alt="Gourmet burger">
+<div class="image-tag"><small>THE DISTRICT FAVOURITE</small>One bite. Full vibe.</div>
+<div class="image-sticker">100%<br>CRAVE<br>WORTHY</div>
+</div>
+</section>
+
+<div class="ticker"><div class="ticker-track" aria-hidden="true">
+<span>GOOD FOOD <b>✳</b></span><span>BIG MOOD <b>✳</b></span><span>ZERO BORING BITES <b>✳</b></span><span>MADE FOR CRAVINGS <b>✳</b></span>
+<span>GOOD FOOD <b>✳</b></span><span>BIG MOOD <b>✳</b></span><span>ZERO BORING BITES <b>✳</b></span><span>MADE FOR CRAVINGS <b>✳</b></span>
+</div></div>
+
+<section class="container content-section" id="menu">
+<div class="section-heading reveal"><div><div class="section-kicker">The good stuff</div><h2>MEET YOUR<br>NEW OBSESSION.</h2></div><p class="section-desc">No sad bites here. Just bold flavours, stacked textures, and seriously satisfying comfort food.</p></div>
+<div class="menu-grid">
+<article class="food-card reveal"><div class="food-image-wrap"><img class="food-image" src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=800&q=80" alt="Signature burger" loading="lazy"><span class="food-label">District favourite</span></div><div class="food-info"><div class="food-title-row"><h3>District Smash</h3><span class="price">₹249</span></div><p>Juicy burger, melted cheese, crisp lettuce, and our signature sauce.</p><div class="food-bottom"><span class="rating"><span>★★★★★</span> Signature pick</span><button class="add-btn" data-food="District Smash" aria-label="Favourite District Smash">+</button></div></div></article>
+<article class="food-card reveal"><div class="food-image-wrap"><img class="food-image" src="https://images.unsplash.com/photo-1606755962773-d324e0a13086?auto=format&fit=crop&w=800&q=80" alt="Crispy chicken burger" loading="lazy"><span class="food-label">Crunch alert</span></div><div class="food-info"><div class="food-title-row"><h3>Crunch Club</h3><span class="price">₹219</span></div><p>Crispy golden chicken, creamy slaw, and a punchy house-made dressing.</p><div class="food-bottom"><span class="rating"><span>★★★★★</span> Crowd pleaser</span><button class="add-btn" data-food="Crunch Club" aria-label="Favourite Crunch Club">+</button></div></div></article>
+<article class="food-card reveal"><div class="food-image-wrap"><img class="food-image" src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?auto=format&fit=crop&w=800&q=80" alt="Crispy fries" loading="lazy"><span class="food-label">Snack attack</span></div><div class="food-info"><div class="food-title-row"><h3>Loaded District Fries</h3><span class="price">₹159</span></div><p>Golden crispy fries, bold seasoning, and a flavour-packed finish.</p><div class="food-bottom"><span class="rating"><span>★★★★★</span> Snack legend</span><button class="add-btn" data-food="Loaded District Fries" aria-label="Favourite Loaded District Fries">+</button></div></div></article>
+</div>
+</section>
+
+<section class="container content-section" id="story">
+<div class="story reveal">
+<img class="story-image" src="https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=1000&q=85" alt="Freshly made burger" loading="lazy">
+<div class="story-copy"><div class="section-kicker">More than a meal</div><h2>BUILT FOR<br>THE BIG CRAVE.</h2><p>Crave District is a fast-food concept built around one simple idea: food should feel like the best part of your day. Think bold flavours, generous portions, and a laid-back atmosphere.</p><p>From quick lunch breaks to late-night cravings, we're here for the moments that call for something seriously satisfying.</p><div class="story-points"><div class="story-point"><strong>BIG FLAVOUR</strong><span>Food with personality.</span></div><div class="story-point"><strong>GOOD VIBES</strong><span>Made for your moments.</span></div></div></div>
+</div>
+</section>
+
+<section class="container content-section" id="contact">
+<div class="cta reveal"><div class="section-kicker">Your next craving starts here</div><h2>HUNGRY? GOOD.<br>WE THOUGHT SO.</h2><p>Found your favourite? Get in touch to learn more about the menu and the Crave District experience.</p><a class="btn" href="mailto:hello@example.com?subject=Crave%20District%20Enquiry">Get in touch ↗</a></div>
+</section>
+</main>
+
+<footer><div class="container"><div class="footer-top"><div><a href="#home" class="logo">CRAVE<span>.</span>DISTRICT<small>GOOD FOOD. BIG MOOD.</small></a><p class="footer-copy">Big bites, bold flavours, and a whole lot of good energy. This is where your cravings belong.</p></div><nav class="footer-links"><a href="#home">Home</a><a href="#menu">Menu</a><a href="#story">Our vibe</a><a href="#contact">Contact</a></nav></div><div class="footer-bottom"><span>© <span id="year"></span> Crave District. All rights reserved.</span><span>Made for the love of good food.</span></div></div></footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="order-modal" id="order-modal" role="dialog" aria-modal="true" aria-labelledby="order-title">
+<div class="order-panel"><button class="order-close" id="close-order" aria-label="Close popup">×</button><div class="order-label">DEMO ORDER</div><h2 id="order-title">Coming soon!</h2><p>This is a portfolio demo. Online ordering will be available when the restaurant connects its real ordering system.</p><button class="order-confirm" id="confirm-order">Got it</button></div>
+</div>
+
+<script>
+const menuToggle=document.getElementById("menu-toggle");
+const mainNavigation=document.getElementById("main-navigation");
+function closeMenu(){if(!menuToggle||!mainNavigation)return;mainNavigation.classList.remove("mobile-open");menuToggle.setAttribute("aria-expanded","false");menuToggle.setAttribute("aria-label","Open navigation menu");menuToggle.textContent="☰";}
+if(menuToggle&&mainNavigation){
+menuToggle.addEventListener("click",()=>{const open=mainNavigation.classList.toggle("mobile-open");menuToggle.setAttribute("aria-expanded",String(open));menuToggle.setAttribute("aria-label",open?"Close navigation menu":"Open navigation menu");menuToggle.textContent=open?"✕":"☰";});
+mainNavigation.querySelectorAll("a").forEach(link=>link.addEventListener("click",closeMenu));
+window.addEventListener("resize",()=>{if(window.innerWidth>640)closeMenu();});
+}
+const reveals=document.querySelectorAll(".reveal");
+if("IntersectionObserver"in window){const observer=new IntersectionObserver((entries,obs)=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add("visible");obs.unobserve(entry.target);}});},{threshold:.12});reveals.forEach(el=>observer.observe(el));}else{reveals.forEach(el=>el.classList.add("visible"));}
+const toast=document.getElementById("toast");let toastTimer;
+function showToast(message){toast.textContent=message;toast.classList.add("show");clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove("show"),2400);}
+document.querySelectorAll(".add-btn").forEach(button=>button.addEventListener("click",()=>showToast(button.dataset.food+" added to your favourites!")));
+const modal=document.getElementById("order-modal");
+const orderButton=document.getElementById("order-button");
+const closeOrder=document.getElementById("close-order");
+const confirmOrder=document.getElementById("confirm-order");
+function openOrder(event){event.preventDefault();modal.classList.add("open");document.body.style.overflow="hidden";closeOrder.focus();}
+function closeOrderPopup(){modal.classList.remove("open");document.body.style.overflow="";orderButton.focus();}
+orderButton.addEventListener("click",openOrder);
+closeOrder.addEventListener("click",closeOrderPopup);
+confirmOrder.addEventListener("click",closeOrderPopup);
+modal.addEventListener("click",event=>{if(event.target===modal)closeOrderPopup();});
+document.addEventListener("keydown",event=>{if(event.key==="Escape"){closeMenu();if(modal.classList.contains("open"))closeOrderPopup();}});
+document.getElementById("year").textContent=new Date().getFullYear();
+console.log("Crave District loaded successfully.");
+</script>
+</body>
+</html>
